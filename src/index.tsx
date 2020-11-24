@@ -1,6 +1,22 @@
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React, {FC} from 'react';
-import {Text} from 'react-native';
+import {WelcomeScreen} from './scenes';
 
-const App: FC = () => <Text>Hello World</Text>;
+const Stack = createStackNavigator();
+
+const App: FC = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Welcome"
+          component={WelcomeScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
 export default App;
