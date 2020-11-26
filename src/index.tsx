@@ -9,11 +9,11 @@ const App: FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Welcome">
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Welcome"
           component={WelcomeScreen}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="Create Profile"
           component={CreateUserScreen}
