@@ -26,6 +26,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.RED,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: colors.BLACK,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0,
+    shadowRadius: 2,
+    elevation: 2,
   },
 });
 
