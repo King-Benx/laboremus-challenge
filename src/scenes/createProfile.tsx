@@ -14,9 +14,11 @@ import {CustomButton} from '../components/molecules';
 
 const background = require('../assets/images/background-3.png');
 
-interface Props {}
+interface Props {
+  navigation: any;
+}
 
-const CreateProfile: FC<Props> = ({}: Props) => {
+const CreateProfile: FC<Props> = ({navigation}: Props) => {
   const [name, setName] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -29,7 +31,9 @@ const CreateProfile: FC<Props> = ({}: Props) => {
     setUsername(text);
   };
 
-  const handleCreateUser = () => {};
+  const handleCreateUser = () => {
+    navigation.navigate('Home');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,13 +53,13 @@ const CreateProfile: FC<Props> = ({}: Props) => {
                 fieldValueListener={nameInputHandler}
               />
               <TextInputComponent
-                placeholder="Create Username"
+                placeholder="Enter Username"
                 fieldValueListener={usernameInputHandler}
               />
               <CustomButton
                 onTouch={handleCreateUser}
                 isProcessing={loading}
-                text="create user"
+                text="PROCEED"
                 viewStyle={styles.button}
               />
             </View>

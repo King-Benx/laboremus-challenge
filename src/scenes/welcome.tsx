@@ -9,8 +9,14 @@ import {SignInButton} from '../components/molecules';
 const background = require('../assets/images/background.png');
 const logo = require('../assets/images/logo.png');
 
-const WelcomeScreen: FC = () => {
-  const handleGoogleSignIn = () => {};
+interface Props {
+  navigation: any;
+}
+
+const WelcomeScreen: FC<Props> = ({navigation}: Props) => {
+  const handleGoogleSignIn = () => {
+    navigation.navigate('Create Profile');
+  };
 
   return (
     <SafeAreaView style={styles.container}>
