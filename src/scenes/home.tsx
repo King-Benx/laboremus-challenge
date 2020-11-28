@@ -1,85 +1,60 @@
-import React, {FC, memo} from 'react';
+import React, {FC, memo, useState, useEffect} from 'react';
 import {
   ImageBackground,
   StyleSheet,
   Image,
   View,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Dimensions} from '../assets/styles';
 import colors from '../assets/styles/colors';
 import {TextComponent, TextInputComponent} from '../components/atoms';
+import {useSelector, useDispatch} from 'react-redux';
 import {FarmersListComponent} from '../components/organisms';
+import {RootState} from '../data/store';
 
 const background = require('../assets/images/background-2.png');
 
 interface Props {}
 
 const Home: FC<Props> = ({}: Props) => {
-  const data: Array<{name: string; gender: string; phone: string}> = [
-    {
-      name: 'Jewel Franecki',
-      gender: 'Male',
-      phone: '0788845593',
-    },
-    {
-      name: 'Evans Quitzon',
-      gender: 'Female',
-      phone: '0756037156',
-    },
-    {
-      name: 'Orpha Little',
-      gender: 'Male',
-      phone: '0789683379',
-    },
-    {
-      name: 'Janelle Bednar',
-      gender: 'Male',
-      phone: '0713236788',
-    },
-    {
-      name: 'Donald Pollich',
-      gender: 'Male',
-      phone: '0770321635',
-    },
-    {
-      name: 'Daphne Konopelski',
-      gender: 'Female',
-      phone: '0729887166',
-    },
-    {
-      name: 'Scarlett Fisher',
-      gender: 'Female',
-      phone: '0745703578',
-    },
-    {
-      name: 'Elna Goodwin',
-      gender: 'Male',
-      phone: '0712541215',
-    },
-    {
-      name: 'Tabitha Shields',
-      gender: 'Female',
-      phone: '0760257061',
-    },
-    {
-      name: 'Laurie Schumm',
-      gender: 'Female',
-      phone: '0745850278',
-    },
-    {
-      name: 'Nyah Cronin',
-      gender: 'Female',
-      phone: '0798622035',
-    },
-  ];
+  const [data, setData] = useState<
+    Array<{name: string; gender: string; phone: string}>
+  >([]);
+  const viewState = useSelector((state: RootState) => state.farmers);
+  const dispatch = useDispatch();
 
-  const onCardTouched = () => {};
+  useEffect(() => {
+    const subscriber = dispatch.farmers.requestFarmerList();
+    return () => subscriber;
+  }, [dispatch.farmers]);
 
-  const onPhoneTouch = () => {};
+  useEffect(() => {
+    if (viewState.farmerList.length > 0) {
+      setData(viewState.farmerList);
+    }
+  }, [viewState.farmerList]);
 
-  const onSearch = () => {};
+  const onCardTouched = () => {
+    //TODO: Implement functionality when a user taps a card ideally, it would open up a detail screen about the farmer
+  };
+
+  const onPhoneTouch = () => {
+    //TODO: Implement functionality when a user taps the call button on a card, ideally this would invoke the calling intent
+  };
+
+  const onSearch = (text: string) => {
+    if (text !== '') {
+      const search = data.filter(
+        (value) => value.name.includes(text) || value.phone.includes(text),
+      );
+      setData(search);
+    } else {
+      dispatch.farmers.requestFarmerList();
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -97,11 +72,19 @@ const Home: FC<Props> = ({}: Props) => {
               placeholder="Search by name or telephone"
               fieldValueListener={onSearch}
             />
-            <FarmersListComponent
-              data={data}
-              cardTouch={onCardTouched}
-              onTelephoneTouch={onPhoneTouch}
-            />
+            {viewState.loading ? (
+              <ActivityIndicator
+                size="large"
+                color={colors.LOGO_COLOR}
+                style={styles.activityIndicator}
+              />
+            ) : (
+              <FarmersListComponent
+                data={data}
+                cardTouch={onCardTouched}
+                onTelephoneTouch={onPhoneTouch}
+              />
+            )}
           </ImageBackground>
         </View>
       </KeyboardAvoidingView>
@@ -138,6 +121,9 @@ const styles = StyleSheet.create({
     fontSize: Dimensions.TITLE,
     fontWeight: 'bold',
     color: colors.WHITE,
+  },
+  activityIndicator: {
+    marginVertical: 200,
   },
 });
 
