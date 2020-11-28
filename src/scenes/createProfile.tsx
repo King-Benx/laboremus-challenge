@@ -32,7 +32,11 @@ const CreateProfile: FC<Props> = ({navigation}: Props) => {
   };
 
   const handleCreateUser = () => {
-    navigation.navigate('Home');
+    //TODO: This would implement the saving of the name and username of the user since google may or may not provide this information or the user might want a different username.
+    setLoading(true);
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 2000);
   };
 
   return (

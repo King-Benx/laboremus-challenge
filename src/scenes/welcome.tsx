@@ -15,6 +15,7 @@ interface Props {
 
 const WelcomeScreen: FC<Props> = ({navigation}: Props) => {
   const handleGoogleSignIn = () => {
+    // TODO: Implement the signin logic, ideally this would get the user signed in using google and this would also be a one time screen.
     navigation.navigate('Create Profile');
   };
 
