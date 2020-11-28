@@ -47,7 +47,9 @@ This assumes that your environment supports react native projects, if not follow
    react-native start
    ```
 5. Run the application
-
+   ```
+   react-native run-android
+   ```
 
 <!-- ROADMAP -->
 ## Roadmap
