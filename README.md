@@ -1,5 +1,5 @@
 # Sante Coffee (Laboremus Challenge)
-|![welcome](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/welcome.png)|![user profile](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/profile.png)|![home](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/home.png)|
+![welcome](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/welcome.png)|![user profile](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/profile.png)|![home](https://github.com/King-Benx/laboremus-challenge/blob/main/screenshots/home.png)
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This is a technical challenge that Laboremus set, they needed a simple application that consumed an API they provided to help managers at Sante Coffee manage farmers.
@@ -9,8 +9,11 @@ This is a technical challenge that Laboremus set, they needed a simple applicati
 These are what are running this application.
 
 [React](https://reactjs.org/) - A JavaScript Library for building user interfaces
+
 [React Native](https://reactnative.dev/) - Uses React to support mobile application development.
+
 [Rematch](https://rematch.netlify.app/) - Helps with state management and is built on top of redux.
+
 [Axios](https://github.com/axios/axios) - Helps with our network calls.
 
 <!-- GETTING STARTED -->
@@ -50,6 +53,7 @@ This assumes that your environment supports react native projects, if not follow
 ## Roadmap
 
 A couple of features and activities need to be implemented and they include the following:
+
 1. There are 4 TODOs within the application and these include handling the sign in with google functionality, creation of user profile, adding new farmers, viewing detailed information about a farmer and having settings screen as well as other screens for additional features.
 2. Running pods for IOS in order to support IOS.
 3. Writing tests for the current features and any other future features.
